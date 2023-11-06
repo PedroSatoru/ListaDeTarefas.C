@@ -55,6 +55,10 @@ void cadastrarTarefa(struct tarefa tarefas[], int *numTarefas) {
     printf("Categoria da tarefa (ate 100 letras): ");
     fgets(novaTarefa.categoria, sizeof(novaTarefa.categoria), stdin);
 
+    printf("Andamento da tarefa (ate 20 letras): ");// criação de uma nova parte da lista de funçoes (andamento)
+    fgets(novaTarefa.andamento, sizeof(novaTarefa.andamento), stdin);
+
+
     tarefas[*numTarefas] = novaTarefa;
     (*numTarefas)++;
     salvarTarefas(tarefas, *numTarefas); // Salva a tarefa no arquivo
@@ -73,26 +77,37 @@ void listarTarefas(struct tarefa tarefas[], int numTarefas) {
 }
 
 // Função para deletar uma tarefa por prioridade e categoria
-void deletarTarefa(struct tarefa tarefas[], int *numTarefas, int prioridade, char categoria[]) {
+void deletarTarefa(struct tarefa tarefas[], int *numTarefas) {
     int tarefaEncontrada = 0;
+    if (numTarefas > 0) {
+        int prioridade;
+        printf("Digite a prioridade da tarefa a ser deletada: ");
+        scanf("%d", &prioridade);
 
-    for (int i = 0; i < *numTarefas; i++) {
-        if (tarefas[i].prioridade == prioridade &&
-            strcmp(tarefas[i].categoria, categoria) == 0) {
-            tarefaEncontrada = 1;
+        char categoria[100];
 
-            // Remover a tarefa movendo as tarefas seguintes para uma posição anterior
-            for (int j = i; j < *numTarefas - 1; j++) {
-                tarefas[j] = tarefas[j + 1];
+        printf("Digite a categoria da tarefa: ");
+        getchar(); // Lê o caractere de nova linha pendente
+        fgets(categoria, sizeof(categoria), stdin);
+
+        for (int i = 0; i < *numTarefas; i++) {
+            if (tarefas[i].prioridade == prioridade &&
+                strcmp(tarefas[i].categoria, categoria) == 0) {
+                tarefaEncontrada = 1;
+
+                // Remover a tarefa movendo as tarefas seguintes para uma posição anterior
+                for (int j = i; j < *numTarefas - 1; j++) {
+                    tarefas[j] = tarefas[j + 1];
+                }
+                (*numTarefas)--;
+                salvarTarefas(tarefas, *numTarefas); // Salva as tarefas atualizadas no arquivo
+                printf("Tarefa com prioridade %d e categoria '%s' deletada com sucesso!\n", prioridade, categoria);
+                break;
             }
-            (*numTarefas)--;
-            salvarTarefas(tarefas, *numTarefas); // Salva as tarefas atualizadas no arquivo
-            printf("Tarefa com prioridade %d e categoria '%s' deletada com sucesso!\n", prioridade, categoria);
-            break;
         }
-    }
 
-    if (!tarefaEncontrada) {
-        printf("Tarefa nao encontrada.\n");
+        if (!tarefaEncontrada) {
+            printf("Tarefa nao encontrada.\n");
+        }
     }
 }

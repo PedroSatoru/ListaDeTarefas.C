@@ -27,21 +27,7 @@ int main() {
                 listarTarefas(tarefas, numTarefas);
                 break;
             case 3:
-                if (numTarefas > 0) {
-                    int prioridade;
-                    printf("Digite a prioridade da tarefa a ser deletada: ");
-                    scanf("%d", &prioridade);
-
-                    char categoria[100];
-
-                    printf("Digite a categoria da tarefa: ");
-                    getchar(); // Lê o caractere de nova linha pendente
-                    fgets(categoria, sizeof(categoria), stdin);
-
-                    deletarTarefa(tarefas, &numTarefas, prioridade, categoria);
-                } else {
-                    printf("Não há tarefas para deletar.\n");
-                }
+                    deletarTarefa(tarefas, &numTarefas);
                 break;
             case 4:
                 printf("Encerrando o programa.\n");

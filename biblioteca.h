@@ -10,6 +10,7 @@ struct tarefa {
     int prioridade;
     char descricao[300];
     char categoria[100];
+    char andamento[20];
 };
 
 void salvarTarefas(struct tarefa tarefas[], int numTarefas);
@@ -20,6 +21,6 @@ void cadastrarTarefa(struct tarefa tarefas[], int *numTarefas);
 
 void listarTarefas(struct tarefa tarefas[], int numTarefas);
 
-void deletarTarefa(struct tarefa tarefas[], int *numTarefas, int prioridade, char categoria[]);
+void deletarTarefa(struct tarefa tarefas[], int *numTarefas);
 
 #endif //PROJETO3_1_BIBLIOTECA_H
