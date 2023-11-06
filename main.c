@@ -15,7 +15,8 @@ int main() {
         printf("1. Cadastrar Tarefa\n");
         printf("2. Listar Tarefas\n");
         printf("3. Deletar Tarefa\n");
-        printf("4. Sair\n");
+        printf("4. Modificar Tarefa\n");
+        printf("5. Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
@@ -27,9 +28,13 @@ int main() {
                 listarTarefas(tarefas, numTarefas);
                 break;
             case 3:
-                    deletarTarefa(tarefas, &numTarefas);
+                deletarTarefa(tarefas, &numTarefas);
                 break;
+
             case 4:
+                modificarTarefa(tarefas,numTarefas);
+                break;
+            case 5:
                 printf("Encerrando o programa.\n");
                 break;
             default:
