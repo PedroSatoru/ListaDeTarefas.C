@@ -55,7 +55,7 @@ void cadastrarTarefa(struct tarefa tarefas[], int *numTarefas) {
     printf("Categoria da tarefa (ate 100 letras): ");
     fgets(novaTarefa.categoria, sizeof(novaTarefa.categoria), stdin);
 
-    printf("Andamento da tarefa (ate 20 letras): ");// criação de uma nova parte da lista de funçoes (andamento)
+    printf("Andamento da tarefa ('completo' / 'em andamento'/ 'nao iniciado'): ");// criação de uma nova parte da lista de funçoes (andamento)
     fgets(novaTarefa.andamento, sizeof(novaTarefa.andamento), stdin);
 
 
@@ -70,8 +70,10 @@ void listarTarefas(struct tarefa tarefas[], int numTarefas) {
     printf("Lista de Tarefas:\n");
     for (int i = 0; i < numTarefas; i++) {
         printf("Prioridade: %d\n", tarefas[i].prioridade);
-        printf("Descricao: %s", tarefas[i].descricao);
-        printf("Categoria: %s", tarefas[i].categoria);
+        printf("Descricao:  %s", tarefas[i].descricao);
+        printf("Categoria:  %s", tarefas[i].categoria);
+        printf("Andamento:  %s", tarefas[i].andamento);
+
         printf("\n");
     }
 }
