@@ -21,6 +21,7 @@ void salvarTarefas(struct tarefa tarefas[], int numTarefas) {
     fclose(arquivo);
 }
 
+
 // Função para carregar todas as tarefas de um arquivo binário
 int carregarTarefas(struct tarefa tarefas[]) {
     FILE *arquivo = fopen("tarefas.bin", "rb");
@@ -255,4 +256,35 @@ void FiltrarTarefa_prioridade_e_categoria(struct tarefa tarefas[], int numTarefa
     }
 }
 
+void exportarPorPrioridade(struct tarefa tarefas[], int numTarefas) {
+    int prioridadeDesejada;
+    printf("Digite a prioridade que deseja filtrar: ");
+    scanf("%d", &prioridadeDesejada);
 
+    FILE *arquivo = fopen("tarefas_prioridade.txt", "w");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo de tarefas por prioridade para escrita.\n");
+        return;
+    }
+
+    int tarefasExportadas = 0;
+
+    for (int i = 0; i < numTarefas; i++) {
+        if (tarefas[i].prioridade == prioridadeDesejada) {
+            fprintf(arquivo, "Prioridade: %d\n", tarefas[i].prioridade);
+            fprintf(arquivo, "Descricao: %s", tarefas[i].descricao);
+            fprintf(arquivo, "Categoria: %s", tarefas[i].categoria);
+            fprintf(arquivo, "Andamento: %s\n", tarefas[i].andamento);
+            fprintf(arquivo, "\n");
+            tarefasExportadas++;
+        }
+    }
+
+    fclose(arquivo);
+
+    if (tarefasExportadas > 0) {
+        printf("Tarefas com prioridade %d exportadas para o arquivo 'tarefas_prioridade.txt'\n", prioridadeDesejada);
+    } else {
+        printf("Nenhuma tarefa encontrada com a prioridade %d para exportar.\n", prioridadeDesejada);
+    }
+}
