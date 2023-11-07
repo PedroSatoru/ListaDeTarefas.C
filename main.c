@@ -19,6 +19,7 @@ int main() {
         printf("5. Filtrar por prioridade\n");
         printf("6. Filtrar por andamento\n");
         printf("7. Filtrar por categoria\n");
+        printf("8. Filtrar por prioridade e categoria\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
@@ -44,6 +45,9 @@ int main() {
                 break;
             case 7:
                 FiltrarTarefa_categoria(tarefas, numTarefas);
+                break;
+            case 8:
+                FiltrarTarefa_prioridade_e_categoria(tarefas, numTarefas);
                 break;
             default:
                 printf("Opção inválida. Tente novamente.\n");
