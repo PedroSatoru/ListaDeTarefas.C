@@ -41,7 +41,7 @@ int main() {
                 printf("Opção inválida. Tente novamente.\n");
                 break;
         }
-    } while (opcao != 4);
+    } while (opcao != 5);
 
     return 0;
 }

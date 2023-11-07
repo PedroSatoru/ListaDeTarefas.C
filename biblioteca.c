@@ -137,11 +137,11 @@ void modificarTarefa(struct tarefa tarefas[], int numTarefas) {
             printf("Nova prioridade da tarefa (0 a 10): ");
             scanf("%d", &tarefas[i].prioridade);
 
-            printf("Nova descricao da tarefa (ate 300 letras): \n");
+            printf("Nova descricao da tarefa (ate 300 letras): ");
             getchar(); // Lê o caractere de nova linha pendente
             fgets(tarefas[i].descricao, sizeof(tarefas[i].descricao), stdin);
 
-            printf("Nova categoria da tarefa (ate 100 letras): \n");
+            printf("Nova categoria da tarefa (ate 100 letras): ");
             fgets(tarefas[i].categoria, sizeof(tarefas[i].categoria), stdin);
 
             printf("Novo andamento da tarefa ('completo' / 'em andamento'/ 'nao iniciado'): ");
@@ -149,12 +149,14 @@ void modificarTarefa(struct tarefa tarefas[], int numTarefas) {
 
             salvarTarefas(tarefas, numTarefas); // Salva as tarefas atualizadas no arquivo
             printf("Tarefa modificada com sucesso!\n");
-            break;
+            return;
 
         }
+
     }
 
     if (!tarefaEncontrada) {
         printf("Tarefa nao encontrada.\n");
+        return;
     }
 }
