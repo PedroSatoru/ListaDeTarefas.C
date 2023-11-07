@@ -35,4 +35,6 @@ void FiltrarTarefa_prioridade_e_categoria(struct tarefa tarefas[], int numTarefa
 
 void exportarPorPrioridade(struct tarefa tarefas[], int numTarefas);
 
+void exportarPorCategoria(struct tarefa tarefas[], int numTarefas);
+
 #endif //PROJETO3_1_BIBLIOTECA_H

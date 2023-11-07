@@ -53,6 +53,9 @@ int main() {
             case 9:
                 exportarPorPrioridade(tarefas,numTarefas);
                 break;
+            case 10:
+                exportarPorCategoria(tarefas, numTarefas);
+                break;
             default:
                 printf("Opção inválida. Tente novamente.\n");
                 break;
