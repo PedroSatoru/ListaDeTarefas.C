@@ -180,3 +180,27 @@ void FiltrarTarefa_Prioridade(struct tarefa tarefas[], int numTarefas){
         printf("Nenhuma tarefa com a prioridade: %d foi encontrada", prioridadeFiltro);
     }
 }
+
+//Funcao para filtrar tarefas por andamento
+void FiltrarTarefa_andamento(struct tarefa tarefas[], int numTarefas){
+    char andamento[20];
+    printf("Digite o andamento da tarefa: ");
+    getchar();
+    fgets(andamento, sizeof(andamento), stdin);
+
+    int tarefaEncontrada=0;
+
+    for(int i= 0; i<numTarefas; i++ ){
+        if (strcmp(tarefas[i].andamento, andamento) == 0) {
+            printf("Prioridade: %d\n", tarefas[i].prioridade);
+            printf("Descricao : %s", tarefas[i].descricao);
+            printf("Categoria : %s", tarefas[i].categoria);
+            printf("Andamento : %s\n", tarefas[i].andamento);
+            tarefaEncontrada= 1 ;
+        }
+    }
+    if(!tarefaEncontrada){
+        printf("Nenhuma tarefa com o andamento: %s foi encontrada", andamento);
+    }
+}
+

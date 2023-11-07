@@ -16,7 +16,8 @@ int main() {
         printf("2. Listar Tarefas\n");
         printf("3. Deletar Tarefa\n");
         printf("4. Modificar Tarefa\n");
-        printf("5. Sair\n");
+        printf("5. Filtrar por prioridade\n");
+        printf("6. Filtrar por andamento\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
@@ -37,11 +38,14 @@ int main() {
             case 5:
                 FiltrarTarefa_Prioridade(tarefas, numTarefas);
                 break;
+            case 6:
+                FiltrarTarefa_andamento(tarefas, numTarefas);
+                break;
             default:
                 printf("Opção inválida. Tente novamente.\n");
                 break;
         }
-    } while (opcao != 6);
+    } while (opcao != 12);
 
     return 0;
 }
