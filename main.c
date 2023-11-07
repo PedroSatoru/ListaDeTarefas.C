@@ -35,13 +35,13 @@ int main() {
                 modificarTarefa(tarefas,numTarefas);
                 break;
             case 5:
-                printf("Encerrando o programa.\n");
+                FiltrarTarefa_Prioridade(tarefas, numTarefas);
                 break;
             default:
                 printf("Opção inválida. Tente novamente.\n");
                 break;
         }
-    } while (opcao != 5);
+    } while (opcao != 6);
 
     return 0;
 }

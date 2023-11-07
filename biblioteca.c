@@ -149,7 +149,7 @@ void modificarTarefa(struct tarefa tarefas[], int numTarefas) {
 
             salvarTarefas(tarefas, numTarefas); // Salva as tarefas atualizadas no arquivo
             printf("Tarefa modificada com sucesso!\n");
-            return;
+            break;
 
         }
 
@@ -157,6 +157,26 @@ void modificarTarefa(struct tarefa tarefas[], int numTarefas) {
 
     if (!tarefaEncontrada) {
         printf("Tarefa nao encontrada.\n");
-        return;
+    }
+}
+//Funcao para filtrar tarefas por prioridade
+void FiltrarTarefa_Prioridade(struct tarefa tarefas[], int numTarefas){
+    int prioridadeFiltro;
+    printf("Digite a prioridade que voce deseja filtrar : ");
+    scanf("%d", &prioridadeFiltro);
+
+    int tarefaEncontrada=0;
+
+    for(int i= 0; i<numTarefas; i++ ){
+        if( tarefas[i].prioridade == prioridadeFiltro){
+            printf("Prioridade: %d\n", tarefas[i].prioridade);
+            printf("Descricao : %s", tarefas[i].descricao);
+            printf("Categoria : %s", tarefas[i].categoria);
+            printf("Andamento : %s\n", tarefas[i].andamento);
+            tarefaEncontrada= 1 ;
+        }
+    }
+    if(!tarefaEncontrada){
+        printf("Nenhuma tarefa com a prioridade: %d foi encontrada", prioridadeFiltro);
     }
 }
