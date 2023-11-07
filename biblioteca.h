@@ -29,4 +29,6 @@ void FiltrarTarefa_Prioridade(struct tarefa tarefas[], int numTarefas);
 
 void FiltrarTarefa_andamento(struct tarefa tarefas[], int numTarefas);
 
+void FiltrarTarefa_categoria(struct tarefa tarefas[], int numTarefas);
+
 #endif //PROJETO3_1_BIBLIOTECA_H

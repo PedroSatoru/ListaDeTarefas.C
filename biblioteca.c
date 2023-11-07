@@ -204,3 +204,27 @@ void FiltrarTarefa_andamento(struct tarefa tarefas[], int numTarefas){
     }
 }
 
+//Funcao para filtrar tarefas por categoria
+void FiltrarTarefa_categoria(struct tarefa tarefas[], int numTarefas){
+    char categoria_filtro[100];
+    printf("Digite a categoria da tarefa: ");
+    getchar();
+    fgets(categoria_filtro, sizeof(categoria_filtro), stdin);
+
+    int tarefaEncontrada=0;
+
+    for(int i= 0; i<numTarefas; i++ ){
+        if (strcmp(tarefas[i].categoria, categoria_filtro) == 0) {
+            printf("Prioridade: %d\n", tarefas[i].prioridade);
+            printf("Descricao : %s", tarefas[i].descricao);
+            printf("Categoria : %s", tarefas[i].categoria);
+            printf("Andamento : %s\n", tarefas[i].andamento);
+            tarefaEncontrada= 1 ;
+        }
+    }
+    if(!tarefaEncontrada){
+        printf("Nenhuma tarefa com a categoria: %s foi encontrada", categoria_filtro);
+    }
+}
+
+
