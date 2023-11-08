@@ -246,26 +246,49 @@ void FiltrarTarefa_andamento(struct tarefa tarefas[], int numTarefas){
     }
 }
 
-//Funcao para filtrar tarefas por categoria
-void FiltrarTarefa_categoria(struct tarefa tarefas[], int numTarefas){
+void FiltrarTarefa_categoria(struct tarefa tarefas[], int numTarefas) {
     char categoria_filtro[100];
     printf("Digite a categoria da tarefa: ");
     getchar();
     fgets(categoria_filtro, sizeof(categoria_filtro), stdin);
 
-    int tarefaEncontrada=0;
+    int tarefaEncontrada = 0;
+    int prioridadesEncontradas[MAX_TAREFAS];
+    int contadorPrioridades = 0;
 
-    for(int i= 0; i<numTarefas; i++ ){
+    for (int i = 0; i < numTarefas; i++) {
         if (strcmp(tarefas[i].categoria, categoria_filtro) == 0) {
-            printf("Prioridade: %d\n", tarefas[i].prioridade);
-            printf("Descricao : %s", tarefas[i].descricao);
-            printf("Categoria : %s", tarefas[i].categoria);
-            printf("Andamento : %s\n", tarefas[i].andamento);
-            tarefaEncontrada= 1 ;
+            prioridadesEncontradas[contadorPrioridades] = tarefas[i].prioridade;
+            contadorPrioridades++;
         }
     }
-    if(!tarefaEncontrada){
-        printf("Nenhuma tarefa com a categoria: %s foi encontrada", categoria_filtro);
+
+    // Ordenar as prioridades encontradas em ordem decrescente
+    for (int i = 0; i < contadorPrioridades - 1; i++) {
+        for (int j = 0; j < contadorPrioridades - i - 1; j++) {
+            if (prioridadesEncontradas[j] < prioridadesEncontradas[j + 1]) {
+                int temp = prioridadesEncontradas[j];
+                prioridadesEncontradas[j] = prioridadesEncontradas[j + 1];
+                prioridadesEncontradas[j + 1] = temp;
+            }
+        }
+    }
+
+    // Imprimir tarefas filtradas em ordem decrescente de prioridade
+    for (int k = 0; k < contadorPrioridades; k++) {
+        for (int i = 0; i < numTarefas; i++) {
+            if (tarefas[i].prioridade == prioridadesEncontradas[k] && strcmp(tarefas[i].categoria, categoria_filtro) == 0) {
+                printf("Prioridade: %d\n", tarefas[i].prioridade);
+                printf("Descricao: %s", tarefas[i].descricao);
+                printf("Categoria: %s", tarefas[i].categoria);
+                printf("Andamento: %s\n", tarefas[i].andamento);
+                tarefaEncontrada = 1;
+            }
+        }
+    }
+
+    if (!tarefaEncontrada) {
+        printf("Nenhuma tarefa com a categoria: %s foi encontrada.\n", categoria_filtro);
     }
 }
 
@@ -341,11 +364,33 @@ void exportarPorCategoria(struct tarefa tarefas[], int numTarefas) {
         printf("Erro ao abrir o arquivo de tarefas por prioridade para escrita.\n");
         return;
     }
-
+    int prioridadesEncontradas[MAX_TAREFAS];
+    int contadorPrioridades = 0;
     int tarefasExportadas = 0;
 
     for (int i = 0; i < numTarefas; i++) {
         if (strcmp(tarefas[i].categoria, categoria_filtro) == 0) {
+            prioridadesEncontradas[contadorPrioridades] = tarefas[i].prioridade;
+            contadorPrioridades++;
+        }
+    }
+
+    // Ordenar as prioridades encontradas em ordem decrescente
+    for (int i = 0; i < contadorPrioridades - 1; i++) {
+        for (int j = 0; j < contadorPrioridades - i - 1; j++) {
+            if (prioridadesEncontradas[j] < prioridadesEncontradas[j + 1]) {
+                int temp = prioridadesEncontradas[j];
+                prioridadesEncontradas[j] = prioridadesEncontradas[j + 1];
+                prioridadesEncontradas[j + 1] = temp;
+            }
+        }
+    }
+
+
+
+    for (int k = 0; k < contadorPrioridades; k++) {
+        for (int i = 0; i < numTarefas; i++) {
+            if (tarefas[i].prioridade == prioridadesEncontradas[k] && strcmp(tarefas[i].categoria, categoria_filtro) == 0) {
             fprintf(arquivo, "Prioridade: %d\n", tarefas[i].prioridade);
             fprintf(arquivo, "Descricao: %s", tarefas[i].descricao);
             fprintf(arquivo, "Categoria: %s", tarefas[i].categoria);
@@ -354,6 +399,7 @@ void exportarPorCategoria(struct tarefa tarefas[], int numTarefas) {
             tarefasExportadas++;
         }
     }
+        }
 
     fclose(arquivo);
 
