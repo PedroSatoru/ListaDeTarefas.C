@@ -151,7 +151,7 @@ void modificarTarefa(struct tarefa tarefas[], int numTarefas) {
     }
     for (int i = 0; i < numTarefas; i++) {
         if (tarefas[i].prioridade == prioridade && strcmp(tarefas[i].categoria, categoria) == 0 && strcmp(tarefas[i].andamento, andamento) == 0 && escolha==2) {
-            tarefaEncontrada = 2;
+            tarefaEncontrada = 1;
 
             printf("Nova descricao da tarefa (ate 300 letras): ");
             getchar(); // Lê o caractere de nova linha pendente
@@ -167,7 +167,7 @@ void modificarTarefa(struct tarefa tarefas[], int numTarefas) {
 
     for (int i = 0; i < numTarefas; i++) {
         if (tarefas[i].prioridade == prioridade && strcmp(tarefas[i].categoria, categoria) == 0 && strcmp(tarefas[i].andamento, andamento) == 0 && escolha==3) {
-            tarefaEncontrada = 3;
+            tarefaEncontrada = 1;
 
             printf("Nova categoria da tarefa (ate 100 letras): ");
             getchar();
@@ -181,7 +181,7 @@ void modificarTarefa(struct tarefa tarefas[], int numTarefas) {
 
         for (int i = 0; i < numTarefas; i++) {
             if (tarefas[i].prioridade == prioridade && strcmp(tarefas[i].categoria, categoria) == 0 && strcmp(tarefas[i].andamento, andamento) == 0 && escolha==4) {
-                tarefaEncontrada = 4;
+                tarefaEncontrada = 1;
 
                 printf("Novo andamento da tarefa ('completo' / 'em andamento'/ 'nao iniciado'): ");
                 getchar();
