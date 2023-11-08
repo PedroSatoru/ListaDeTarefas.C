@@ -129,28 +129,69 @@ void modificarTarefa(struct tarefa tarefas[], int numTarefas) {
     printf("Digite o andamento da tarefa: ");
     fgets(andamento, sizeof(andamento), stdin);
 
-    int tarefaEncontrada = 0;
+    int tarefaEncontrada=0;
+
+    int escolha;
+    printf("1. Prioridade \n2.Descricao \n3. Categoria \n4. Andamento \n  Digite o campo que vc deseja alterar: ");
+    scanf("%d",&escolha);
 
     for (int i = 0; i < numTarefas; i++) {
-        if (tarefas[i].prioridade == prioridade && strcmp(tarefas[i].categoria, categoria) == 0 && strcmp(tarefas[i].andamento, andamento) == 0) {
+        if (tarefas[i].prioridade == prioridade && strcmp(tarefas[i].categoria, categoria) == 0 && strcmp(tarefas[i].andamento, andamento) == 0 && escolha==1) {
             tarefaEncontrada = 1;
 
             printf("Nova prioridade da tarefa (0 a 10): ");
             scanf("%d", &tarefas[i].prioridade);
 
+            salvarTarefas(tarefas, numTarefas); // Salva as tarefas atualizadas no arquivo
+            printf("Tarefa modificada com sucesso!\n");
+            break;
+
+        }
+
+    }
+    for (int i = 0; i < numTarefas; i++) {
+        if (tarefas[i].prioridade == prioridade && strcmp(tarefas[i].categoria, categoria) == 0 && strcmp(tarefas[i].andamento, andamento) == 0 && escolha==2) {
+            tarefaEncontrada = 2;
+
             printf("Nova descricao da tarefa (ate 300 letras): ");
             getchar(); // Lê o caractere de nova linha pendente
             fgets(tarefas[i].descricao, sizeof(tarefas[i].descricao), stdin);
 
-            printf("Nova categoria da tarefa (ate 100 letras): ");
-            fgets(tarefas[i].categoria, sizeof(tarefas[i].categoria), stdin);
+            salvarTarefas(tarefas, numTarefas); // Salva as tarefas atualizadas no arquivo
+            printf("Tarefa modificada com sucesso!\n");
+            break;
 
-            printf("Novo andamento da tarefa ('completo' / 'em andamento'/ 'nao iniciado'): ");
-            fgets(tarefas[i].andamento, sizeof(tarefas[i].andamento), stdin);
+        }
+
+    }
+
+    for (int i = 0; i < numTarefas; i++) {
+        if (tarefas[i].prioridade == prioridade && strcmp(tarefas[i].categoria, categoria) == 0 && strcmp(tarefas[i].andamento, andamento) == 0 && escolha==3) {
+            tarefaEncontrada = 3;
+
+            printf("Nova categoria da tarefa (ate 100 letras): ");
+            getchar();
+            fgets(tarefas[i].categoria, sizeof(tarefas[i].categoria), stdin);
 
             salvarTarefas(tarefas, numTarefas); // Salva as tarefas atualizadas no arquivo
             printf("Tarefa modificada com sucesso!\n");
             break;
+
+        }
+
+        for (int i = 0; i < numTarefas; i++) {
+            if (tarefas[i].prioridade == prioridade && strcmp(tarefas[i].categoria, categoria) == 0 && strcmp(tarefas[i].andamento, andamento) == 0 && escolha==4) {
+                tarefaEncontrada = 4;
+
+                printf("Novo andamento da tarefa ('completo' / 'em andamento'/ 'nao iniciado'): ");
+                getchar();
+                fgets(tarefas[i].andamento, sizeof(tarefas[i].andamento), stdin);
+
+                salvarTarefas(tarefas, numTarefas); // Salva as tarefas atualizadas no arquivo
+                printf("Tarefa modificada com sucesso!\n");
+                break;
+
+            }
 
         }
 
