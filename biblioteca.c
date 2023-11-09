@@ -33,7 +33,7 @@ int carregarTarefas(struct tarefa tarefas[]) {
     int numTarefas = 0;
     while (fread(&tarefas[numTarefas], sizeof(struct tarefa), 1, arquivo) == 1) {
         numTarefas++;
-    }
+    }//contar a quantidade de tarefas existentes
     fclose(arquivo);
     return numTarefas;
 }
@@ -142,7 +142,7 @@ void modificarTarefa(struct tarefa tarefas[], int numTarefas) {
             printf("Nova prioridade da tarefa (0 a 10): ");
             scanf("%d", &tarefas[i].prioridade);
 
-            salvarTarefas(tarefas, numTarefas); // Salva as tarefas atualizadas no arquivo
+            salvarTarefas(tarefas, numTarefas);
             printf("Tarefa modificada com sucesso!\n");
             break;
 
@@ -154,10 +154,10 @@ void modificarTarefa(struct tarefa tarefas[], int numTarefas) {
             tarefaEncontrada = 1;
 
             printf("Nova descricao da tarefa (ate 300 letras): ");
-            getchar(); // Lê o caractere de nova linha pendente
+            getchar();
             fgets(tarefas[i].descricao, sizeof(tarefas[i].descricao), stdin);
 
-            salvarTarefas(tarefas, numTarefas); // Salva as tarefas atualizadas no arquivo
+            salvarTarefas(tarefas, numTarefas);
             printf("Tarefa modificada com sucesso!\n");
             break;
 
@@ -391,15 +391,15 @@ void exportarPorCategoria(struct tarefa tarefas[], int numTarefas) {
     for (int k = 0; k < contadorPrioridades; k++) {
         for (int i = 0; i < numTarefas; i++) {
             if (tarefas[i].prioridade == prioridadesEncontradas[k] && strcmp(tarefas[i].categoria, categoria_filtro) == 0) {
-            fprintf(arquivo, "Prioridade: %d\n", tarefas[i].prioridade);
-            fprintf(arquivo, "Descricao: %s", tarefas[i].descricao);
-            fprintf(arquivo, "Categoria: %s", tarefas[i].categoria);
-            fprintf(arquivo, "Andamento: %s\n", tarefas[i].andamento);
-            fprintf(arquivo, "\n");
-            tarefasExportadas++;
+                fprintf(arquivo, "Prioridade: %d\n", tarefas[i].prioridade);
+                fprintf(arquivo, "Descricao: %s", tarefas[i].descricao);
+                fprintf(arquivo, "Categoria: %s", tarefas[i].categoria);
+                fprintf(arquivo, "Andamento: %s\n", tarefas[i].andamento);
+                fprintf(arquivo, "\n");
+                tarefasExportadas++;
+            }
         }
     }
-        }
 
     fclose(arquivo);
 
@@ -449,4 +449,3 @@ void exportarPorPrioridade_e_Categoria(struct tarefa tarefas[], int numTarefas) 
         printf("Nenhuma tarefa encontrada com a prioridade %d e categoria %s para exportar.\n",prioridadeDesejada, categoria_filtro);
     }
 }
-

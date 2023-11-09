@@ -12,15 +12,15 @@ int main() {
     int opcao;
     do {
         printf("\nMenu:\n");
-        printf("1. Cadastrar Tarefa\n");
-        printf("2. Listar Tarefas\n");
-        printf("3. Deletar Tarefa\n");
-        printf("4. Modificar Tarefa\n");
-        printf("5. Filtrar por prioridade\n");
-        printf("6. Filtrar por andamento\n");
-        printf("7. Filtrar por categoria\n");
-        printf("8. Filtrar por prioridade e categoria\n");
-        printf("9. Exportar por prioridade \n");
+        printf("1.  Cadastrar Tarefa\n");
+        printf("2.  Listar Tarefas\n");
+        printf("3.  Deletar Tarefa\n");
+        printf("4.  Modificar Tarefa\n");
+        printf("5.  Filtrar por prioridade\n");
+        printf("6   Filtrar por andamento\n");
+        printf("7.  Filtrar por categoria\n");
+        printf("8.  Filtrar por prioridade e categoria\n");
+        printf("9.  Exportar por prioridade \n");
         printf("10. Exportar por categoria \n");
         printf("11. Exportar por prioridade e categoria \n");
         printf("12. Encerrar programa \n");
@@ -62,12 +62,14 @@ int main() {
             case 11:
                 exportarPorPrioridade_e_Categoria(tarefas, numTarefas);
                 break;
+            case 12:
+                printf("\nPrograma finalizado\n");
+                break;
             default:
-                printf("Opção inválida. Tente novamente.\n");
+                printf("Opcao invalida. Tente novamente.\n");
                 break;
         }
     } while (opcao != 12);
 
     return 0;
 }
-
