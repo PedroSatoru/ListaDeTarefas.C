@@ -1,2 +1,2 @@
-Projeto 3
+
 O projeto 3 proposto pela materia desenvolvimento de algoritmos no segundo semestre de ciencias da computação na faculdade FEI, se propoe utilizar como base o projeto 1, que se baseia em criar uma lista de tarefas, em que o usuario pode criar tarefas com descrições, prioridades e categorias. No projeto 3 devemos criar novas funções, para colocar o andamento da tarefa, e diversos filtros, alem de imprimirmos funções em outros arquivos.
